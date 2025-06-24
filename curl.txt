@@ -1,0 +1,14 @@
+# Create
+curl -X POST http://localhost:8080/api/users -H "Content-Type: application/json" -d '{"name":"Jane","email":"jane@example.com"}'
+
+# Get All
+curl http://localhost:8080/api/users?page=0&size=10
+
+# Get One
+curl http://localhost:8080/api/users/1
+
+# Update
+curl -X PUT http://localhost:8080/api/users/1 -H "Content-Type: application/json" -d '{"name":"Jane Updated","email":"new@example.com"}'
+
+# Delete
+curl -X DELETE http://localhost:8080/api/users/1
