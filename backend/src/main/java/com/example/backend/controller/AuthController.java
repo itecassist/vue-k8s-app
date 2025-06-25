@@ -9,6 +9,9 @@ import jakarta.validation.Valid;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import com.example.backend.model.User;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
@@ -29,5 +32,10 @@ public class AuthController {
     public ResponseEntity<AuthResponse> login(@RequestBody @Valid AuthRequest request) {
         String token = authService.login(request);
         return ResponseEntity.ok(new AuthResponse(token));
+    }
+
+    @GetMapping("/me")
+    public User me(@AuthenticationPrincipal User user) {
+        return user;
     }
 }

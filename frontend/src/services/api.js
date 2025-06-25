@@ -1,9 +1,9 @@
-import axios from 'axios';
+import axios from './axios';
 
 export const getUsers = () => {
-  return axios.get('/api/users');
+  return axios.get('/users');
 };
 
 export const createUser = (user) => {
-  return axios.post('/api/users', user);
+  return axios.post('/users', user);
 };

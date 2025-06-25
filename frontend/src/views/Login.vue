@@ -19,7 +19,7 @@ const password = ref('')
 const router = useRouter()
 
 const login = async () => {
-  const token = await loginUser({ email: email.value, password: password.value })
+  const token = await loginUser({ username: email.value, password: password.value })
   localStorage.setItem('token', token)
   alert('Logged in successfully')
   router.push('/users')

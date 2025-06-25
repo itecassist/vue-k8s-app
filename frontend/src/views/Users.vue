@@ -6,7 +6,7 @@
     <UserForm @userCreated="fetchUsers" />
     <ul>
       <li v-for="user in users" :key="user.id">
-        {{ user.name }} — {{ user.email }}
+        {{ user.name }} — {{ user.username }}
       </li>
     </ul>
   </div>
@@ -14,7 +14,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue'
-import axios from 'axios'
+import axios from '../services/axios'
 import { useRouter } from 'vue-router'
 import UserForm from '@/components/UserForm.vue' // ✅ this path must be correct
 const router = useRouter()
@@ -27,7 +27,7 @@ const users = ref([])
 
 const fetchUsers = async () => {
   const response = await axios.get('http://localhost:8080/api/users')
-  users.value = response.data
+  users.value = response.data.content
 }
 
 onMounted(fetchUsers)

@@ -21,7 +21,7 @@ const password = ref('')
 const router = useRouter()
 
 const register = async () => {
-  await registerUser({ name: name.value, email: email.value, password: password.value })
+  await registerUser({ name: name.value, username: email.value, password: password.value })
   alert('Registered successfully')
   router.push('/auth/login')
 }

@@ -3,16 +3,14 @@ package com.example.backend.dto;
 public class UserResponseDTO {
     private Long id;
     private String name;
-    private String email;
+    private String username;
 
-    // Constructor
-    public UserResponseDTO(Long id, String name, String email) {
+    public UserResponseDTO(Long id, String name, String username) {
         this.id = id;
         this.name = name;
-        this.email = email;
+        this.username = username;
     }
 
-    // Getters only (immutable response)
     public Long getId() {
         return id;
     }
@@ -21,7 +19,7 @@ public class UserResponseDTO {
         return name;
     }
 
-    public String getEmail() {
-        return email;
+    public String getUsername() {
+        return username;
     }
 }

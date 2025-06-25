@@ -4,8 +4,8 @@ import com.example.backend.dto.AuthRequest;
 import com.example.backend.dto.RegisterRequest;
 import com.example.backend.model.User;
 import com.example.backend.repository.UserRepository;
-import com.example.backend.security.JwtService;
 import com.example.backend.service.AuthService;
+import com.example.backend.service.JwtService;
 
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -33,8 +33,8 @@ public class AuthServiceImpl implements AuthService {
     @Override
     public void register(RegisterRequest request) {
         User user = new User();
-        //user.setUsername(request.getUsername());
-        user.setEmail(request.getEmail());
+        user.setName(request.getName());
+        user.setUsername(request.getUsername());
         user.setPassword(passwordEncoder.encode(request.getPassword()));
         userRepository.save(user);
     }

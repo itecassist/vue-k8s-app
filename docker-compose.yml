@@ -9,14 +9,9 @@ services:
         condition: service_healthy
       db:
         condition: service_started
-    environment:
-      SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/mydb
-      SPRING_DATASOURCE_USERNAME: user
-      SPRING_DATASOURCE_PASSWORD: password
-      SPRING_REDIS_HOST: redis
-      SPRING_REDIS_PORT: 6379
-    restart: always  # ⬅️ ensure it retries if Redis was starting late
-
+    env_file:
+      - .env
+    command: java -jar app.jar
   db:
     image: postgres:15
     environment:
@@ -25,6 +20,8 @@ services:
       POSTGRES_PASSWORD: password
     ports:
       - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
 
   redis:
     image: redis:7
@@ -35,10 +32,14 @@ services:
       interval: 5s
       timeout: 3s
       retries: 5
-  frontend:
-    build:
-      context: ./frontend
-    ports:
-      - "5173:80"
-    depends_on:
-      - backend
+
+  # frontend:
+  #   build:
+  #     context: ./frontend
+  #   ports:
+  #     - "5173:80"
+  #   depends_on:
+  #     - backend
+volumes:
+  pgdata:
+    driver: local

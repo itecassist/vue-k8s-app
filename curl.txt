@@ -1,5 +1,5 @@
 # Create
-curl -X POST http://localhost:8080/api/users -H "Content-Type: application/json" -d '{"name":"Jane","email":"jane@example.com"}'
+curl -X POST http://localhost:8080/api/users -H "Content-Type: application/json" -d '{"name":"Jane","username":"jane@example.com","password":"password"}'
 
 # Get All
 curl http://localhost:8080/api/users?page=0&size=10
@@ -12,3 +12,13 @@ curl -X PUT http://localhost:8080/api/users/1 -H "Content-Type: application/json
 
 # Delete
 curl -X DELETE http://localhost:8080/api/users/1
+
+
+
+# Maven
+mvn clean package -DskipTest
+mvn install
+
+# Docker 
+docker compose down
+docker compose up --build

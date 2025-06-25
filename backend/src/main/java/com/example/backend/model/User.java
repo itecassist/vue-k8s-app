@@ -9,10 +9,12 @@ import java.util.Collection;
 import java.util.Collections;
 
 @Entity
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
+@Table(name = "users", uniqueConstraints = @UniqueConstraint(columnNames = "username"))
 public class User implements UserDetails {
 
     @Id
@@ -21,21 +23,14 @@ public class User implements UserDetails {
 
     private String name;
 
-    @Column(unique = true)
-    private String email;
+    @Column(unique = true, name = "username")
+    private String username;
 
     private String password;
 
-    // Implement UserDetails methods
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return Collections.emptyList(); // No roles for now
-    }
-
-    @Override
-    public String getUsername() {
-        return email; // Use email as username
+        return Collections.emptyList(); // No roles yet
     }
 
     @Override
